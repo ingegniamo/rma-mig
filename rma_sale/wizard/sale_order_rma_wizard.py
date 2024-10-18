@@ -52,7 +52,7 @@ class SaleOrderRmaWizard(models.TransientModel):
     )
 
     def create_rma(self, from_portal=False):
-        self.ensure_one()
+        """ self.ensure_one() """
         user_has_group_portal = self.env.user.has_group(
             "base.group_portal"
         ) or self.env.user.has_group("base.group_public")
@@ -64,23 +64,23 @@ class SaleOrderRmaWizard(models.TransientModel):
             else self.env["rma"]
         )
         rma = rma_model.create(val_list)
-        if from_portal:
-            rma._add_message_subscribe_partner()
-        # post messages
-        msg_list = [
-            '<a href="#" data-oe-model="rma" data-oe-id="%d">%s</a>' % (r.id, r.name)
-            for r in rma
-        ]
-        msg = ", ".join(msg_list)
-        if len(msg_list) == 1:
-            self.order_id.message_post(body=_(msg + " has been created."))
-        elif len(msg_list) > 1:
-            self.order_id.message_post(body=_(msg + " have been created."))
-        rma.message_post_with_view(
-            "mail.message_origin_link",
-            values={"self": rma, "origin": self.order_id},
-            subtype_id=self.env.ref("mail.mt_note").id,
-        )
+        for rm in rma:
+            if from_portal:
+                rm._add_message_subscribe_partner()
+            # post messages
+            msg_list = [
+                '<a href="#" data-oe-model="rma" data-oe-id="%d">%s</a>' % (rm.id, rm.name)
+            ]
+            msg = ", ".join(msg_list)
+            if len(msg_list) == 1:
+                self.order_id.message_post(body=_(msg + " has been created."))
+            elif len(msg_list) > 1:
+                self.order_id.message_post(body=_(msg + " have been created."))
+            rm.message_mail_with_source(
+                "mail.message_origin_link",
+                render_values={"self": rm, "origin": self.order_id},
+                subtype_id=self.env.ref("mail.mt_note").id,
+            )
         return rma
 
     def create_and_open_rma(self):

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="sale_order_create_rma_action" model="ir.actions.act_window">
         <field name="name">Create RMAs</field>
@@ -20,44 +19,20 @@
                             <field name="product_id" options="{'no_create': True}" />
                             <field name="quantity" />
                             <field name="uom_category_id" invisible="1" />
-                            <field
-                                name="uom_id"
-                                groups="uom.group_uom"
-                                options="{'no_create': True}"
-                            />
+                            <field name="uom_id" groups="uom.group_uom" options="{'no_create': True}" />
                             <field name="allowed_picking_ids" invisible="1" />
-                            <field
-                                name="picking_id"
-                                options="{'no_create': True}"
-                                required="1"
-                            />
-                            <field
-                                name="operation_id"
-                                attrs="{'required': [('quantity', '>', 0)]}"
-                            />
+                            <field name="picking_id" options="{'no_create': True}" required="1" />
+                            <field name="operation_id" required="quantity &gt; 0" />
                         </tree>
                     </field>
                 </group>
                 <group>
                     <field name="commercial_partner_id" invisible="1" />
-                    <field
-                        name="partner_shipping_id"
-                        domain="[('id', 'child_of', commercial_partner_id)]"
-                    />
-                    <field
-                        name="location_id"
-                        options="{'no_create': True, 'no_open': True}"
-                        groups="stock.group_stock_multi_locations"
-                        required="1"
-                    />
+                    <field name="partner_shipping_id" domain="[('id', 'child_of', commercial_partner_id)]" />
+                    <field name="location_id" options="{'no_create': True, 'no_open': True}" groups="stock.group_stock_multi_locations" required="1" />
                 </group>
                 <footer>
-                    <button
-                        name="create_and_open_rma"
-                        string="Accept"
-                        type="object"
-                        class="btn-primary"
-                    />
+                    <button name="create_and_open_rma" string="Accept" type="object" class="btn-primary" />
                     <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
