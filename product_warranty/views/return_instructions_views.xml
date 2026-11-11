@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!-- return instructions tree view -->
     <record id="product_return_instructions_tree_view" model="ir.ui.view">
@@ -36,9 +36,9 @@
         <field name="view_id" ref="product_return_instructions_tree_view" />
     </record>
     <menuitem
+        id="menu_product_return_instructions_action"
         action="product_return_instructions_action"
         groups="base.group_no_one"
-        id="menu_product_return_instructions_action"
         parent="sale.prod_config_main"
         sequence="3"
     />
