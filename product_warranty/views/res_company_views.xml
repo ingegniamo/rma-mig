@@ -6,10 +6,7 @@
         <field name="model">res.company</field>
         <field name="inherit_id" ref="base.view_company_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//field[@name='company_registry']/ancestor::group"
-                position="after"
-            >
+            <xpath expr="//page[@name='general_info']/group" position="after">
                 <separator string="CRM Product Return Address" />
                 <group col="2">
                     <group>

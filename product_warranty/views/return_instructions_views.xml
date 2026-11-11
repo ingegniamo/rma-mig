@@ -39,7 +39,7 @@
         id="menu_product_return_instructions_action"
         action="product_return_instructions_action"
         groups="base.group_no_one"
-        parent="sale.prod_config_main"
+        parent="sale.product_menu_catalog"
         sequence="3"
     />
 </odoo>

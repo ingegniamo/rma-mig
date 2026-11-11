@@ -12,3 +12,4 @@
 - [APSL-Nagarro](https://www.apsl.tech):
   - Antoni Marroig \<<amarroig@apsl.net>\>
 - Frederic Grall \<<fgr@apik.cloud>\>
+- Daniele Lucarelli \<<lucarelli.d@stesi.consulting>\>

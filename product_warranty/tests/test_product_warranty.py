@@ -94,15 +94,15 @@ class TestProductWarranty(TransactionCase):
             }
         )
 
-        supplierinfo_data = dict(
-            partner_id=partner_id.id,
-            product_name="Test SupplierInfo for display Default Instruction",
-            min_qty=4,
-            delay=5,
-            warranty_return_partner="supplier",
-            product_tmpl_id=product_tmpl_id.id,
-            warranty_return_other_address=other_partner.id,
-        )
+        supplierinfo_data = {
+            "partner_id": partner_id.id,
+            "product_name": "Test SupplierInfo for display Default Instruction",
+            "min_qty": 4,
+            "delay": 5,
+            "warranty_return_partner": "supplier",
+            "product_tmpl_id": product_tmpl_id.id,
+            "warranty_return_other_address": other_partner.id,
+        }
 
         self.supplierinfo_brw = self.supplierinfo.create(supplierinfo_data)
 
